@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核心竞争力与价值主张 | 高增浩</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* --- 本页专用样式 --- */
+        .manifesto-header {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 100%);
+        }
+        
+        /* 三大支柱布局 */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+        .pillar-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .pillar-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+        .pillar-num {
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.03);
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            line-height: 1;
+        }
+        .pillar-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+        .sub-section { margin-top: 25px; }
+        .sub-title { color: var(--accent-gold); font-size: 16px; margin-bottom: 8px; font-weight: bold; }
+        .sub-desc { color: #888; font-size: 14px; line-height: 1.6; text-align: justify; }
+
+        /* 价值金字塔布局 - 修正版 */
+        .value-section {
+            background: #0d0d0d;
+            padding: 80px 40px;
+            border-radius: 20px;
+            border: 1px solid #222;
+            margin-bottom: 100px;
+        }
+        .pyramid-level {
+            padding: 15px;
+            margin: 0 auto 5px; /* 居中 */
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* 塔尖：第5层 - 战略决策 */
+        .level-5 { 
+            width: 40%; 
+            background: rgba(255, 255, 255, 0.05); 
+            border-top: 2px solid #555;
+            color: #888;
+            font-size: 14px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        /* 核心层：第4层 - 体系构建 (您当前的位置) */
+        .level-4 { 
+            width: 55%; 
+            background: rgba(212, 175, 55, 0.15); 
+            border-color: var(--accent-gold); 
+            color: #fff; 
+            font-size: 18px; 
+            font-weight: bold;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+            z-index: 2;
+            transform: scale(1.05); /* 微微放大突出 */
+        }
+
+        /* 支撑层 */
+        .level-3 { width: 70%; background: rgba(255, 255, 255, 0.08); color: #ccc; }
+        .level-2 { width: 85%; background: rgba(255, 255, 255, 0.05); color: #999; }
+        .level-1 { width: 100%; background: rgba(255, 255, 255, 0.03); color: #666; border-radius: 0 0 8px 8px; }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .level-5, .level-4, .level-3, .level-2, .level-1 { width: 100%; transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">GAO<span>.ZH</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="services.html">价值与服务</a></li>
+                    <li><a href="manifesto.html" class="active">核心竞争力</a></li> <!-- 新增入口 -->
+                    <li><a href="about.html">关于 & 简历</a></li>
+                    <li><a href="contact.html">联系合作</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="manifesto-header">
+            <p style="color:var(--accent-gold); letter-spacing:3px;">MY MANIFESTO</p>
+            <h1>核心竞争力与价值定位</h1>
+            <p style="color:#666; margin-top:15px; max-width:600px; margin-left:auto; margin-right:auto;">
+                我提供的不仅是执行力，而是一个能发现问题、设计系统、驱动增长，并为组织留下宝贵资产的“商业架构师”的综合价值。
+            </p>
+        </div>
+
+        <!-- 模块一：三大核心能力支柱 -->
+        <div class="pillar-grid">
+            
+            <!-- 支柱 1 -->
+            <div class="pillar-card">
+                <div class="pillar-num">01</div>
+                <h3 class="pillar-title">体系架构与流程再造</h3>
+                <p style="color:#aaa; margin-bottom:20px;">从 0 到 1 的系统设计者</p>
+                
+                <div class="sub-section">
+                    <div class="sub-title">📡 业务流程数字化</div>
+                    <div class="sub-desc">主导构建“企微+CRM”业财一体化中台，打通财务/法务/OA孤岛，实现业务全流程100%线上化，告别“拍脑袋决策”。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">⚙️ 运营体系标准化</div>
+                    <div class="sub-desc">建立《抖音IP孵化SOP》等体系文件，将个人经验转化为组织资产，赋能0基础团队实现IP矩阵规模化复制。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">📐 管理思维工程化</div>
+                    <div class="sub-desc">引入CMMI3标准，坚持“度量分析”与“预防式管理”，曾通过流程优化将项目交付周期缩短15%。</div>
+                </div>
+            </div>
+
+            <!-- 支柱 2 -->
+            <div class="pillar-card">
+                <div class="pillar-num">02</div>
+                <h3 class="pillar-title">商业创新与增长驱动</h3>
+                <p style="color:#aaa; margin-bottom:20px;">从 1 到 N 的破局者</p>
+                
+                <div class="sub-section">
+                    <div class="sub-title">🦄 新业务MVP验证</div>
+                    <div class="sub-desc">在装修业务探索期，亲自下场跑通MVP，以自建新媒体体系为引擎，3个月实现100万业绩突破，验证商业模式。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">📈 低成本增长实战</div>
+                    <div class="sub-desc">操盘“社区拼团”战役，创下26小时获客13,000+及CPA低至2.3元的记录，展现卓越的增长黑客能力。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">💎 内部能力产品化</div>
+                    <div class="sub-desc">具备SaaS化战略眼光，主导“红豆经纪联盟”从内部工具转型为商业化SaaS产品，完成商业闭环。</div>
+                </div>
+            </div>
+
+            <!-- 支柱 3 -->
+            <div class="pillar-card">
+                <div class="pillar-num">03</div>
+                <h3 class="pillar-title">技术前瞻与组织赋能</h3>
+                <p style="color:#aaa; margin-bottom:20px;">面向未来的进化者</p>
+                
+                <div class="sub-section">
+                    <div class="sub-title">🤖 前沿技术融合 (AIGC)</div>
+                    <div class="sub-desc">落地ComfyUI工作流与LLM知识库，实现跨境电商“选品-生图-文案”全链路自动化，降本增效。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">📚 组织资产沉淀</div>
+                    <div class="sub-desc">拥有超75万字个人知识库。坚持“先沉淀，再分享，后固化”，为组织留下可复用的方法论。</div>
+                </div>
+                <div class="sub-section">
+                    <div class="sub-title">🎓 教练式领导</div>
+                    <div class="sub-desc">通过SOP教科书与实战指导，快速将新人培养成骨干，实现团队能力的整体跃迁。</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 模块二：核心价值分析 -->
+        <div class="section-title">
+            <h2>市场定位与老板视角</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="value-section">
+            <h3 style="text-align:center; margin-bottom:30px; color:#fff;">职业金字塔定位</h3>
+            
+            <!-- 金字塔结构 -->
+            <div class="pyramid-container">
+                
+                <!-- Level 5: 塔尖 -->
+                <div class="pyramid-level level-5">
+                    <span>Level 5: 战略决策层 (“掌舵人”)</span>
+                    <span style="font-size:12px; opacity:0.6; margin-top:4px;">(未来愿景 / 合伙人潜力)</span>
+                </div>
+
+                <!-- Level 4: 核心定位 (高亮) -->
+                <div class="pyramid-level level-4">
+                    <span>Level 4: 体系构建层 (“总建筑师”)</span>
+                    <div style="font-size:13px; font-weight:normal; margin-top:8px; color:var(--accent-gold); background:rgba(0,0,0,0.6); padding:4px 12px; border-radius:20px;">
+                        ★ 我站在这里：从战壕里走出来的系统设计者
+                    </div>
+                </div>
+
+                <!-- Level 3 -->
+                <div class="pyramid-level level-3">Level 3: 职能深耕层 (“部门专家”)</div>
+
+                <!-- Level 2 -->
+                <div class="pyramid-level level-2">Level 2: 项目管理层 (“小队长”)</div>
+
+                <!-- Level 1 -->
+                <div class="pyramid-level level-1">Level 1: 基础执行层 (“螺丝钉”)</div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">© 2025 Gao Zenghao. Powered by System Thinking.</div>
+    </footer>
+</body>
+</html>

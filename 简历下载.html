@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高增浩 - 资深产品运营总监简历</title>
+    <!-- 引入必要的库用于导出Word -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js-typescript@0.1.5/dist/index.min.js"></script>
+    <!-- 这里的 html-docx 库在浏览器端有时候需要特定的 build，为了稳定性，
+         我将在下面脚本中使用更原生的 Blob 方式生成 Word 文档，兼容性更好 -->
+
+    <style>
+        /* --- 全局样式 --- */
+        :root {
+            --primary-color: #000; /* 正文黑 */
+            --accent-color: #C5A059; /* 核心金 */
+            --bg-color: #f0f2f5;
+            --paper-color: #ffffff;
+            --line-height: 1.6;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 20px 0;
+            line-height: var(--line-height);
+        }
+
+        /* --- A4 纸张模拟 --- */
+        .page-container {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--paper-color);
+            margin: 0 auto;
+            padding: 20mm;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* --- 顶部控制栏 (屏幕显示，打印隐藏) --- */
+        .control-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .btn {
+            background-color: #333;
+            color: #C5A059;
+            border: 1px solid #C5A059;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: 0.3s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #C5A059;
+            color: #fff;
+        }
+
+        /* --- 简历具体内容样式 --- */
+        h1 {
+            font-size: 28px;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .job-title {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: inline-block;
+        }
+
+        /* 模块标题 */
+        h2 {
+            font-size: 18px;
+            background-color: #f4f4f4;
+            padding: 5px 10px;
+            border-left: 4px solid var(--accent-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 15px 0 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .company-name { font-weight: bold; font-size: 16px; }
+        .job-role { font-weight: bold; color: #444; margin-right: 10px; }
+        .date-range { font-size: 14px; color: #666; float: right; }
+        .sub-info { font-size: 13px; color: #666; font-style: italic; margin-bottom: 5px; }
+
+        p { margin: 5px 0; font-size: 14px; text-align: justify; }
+        ul { margin: 5px 0 10px 20px; padding: 0; font-size: 14px; }
+        li { margin-bottom: 4px; }
+
+        /* 技能表格 */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .skills-table td {
+            padding: 6px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .skills-table td:first-child {
+            width: 100px;
+            font-weight: bold;
+            color: #444;
+            background: #fafafa;
+        }
+
+        /* --- 打印/PDF 适配 --- */
+        @media print {
+            body { background: none; padding: 0; }
+            .page-container { width: 100%; margin: 0; box-shadow: none; padding: 0; }
+            .control-panel { display: none; }
+            h2 { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            a { text-decoration: none; color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 悬浮控制按钮 -->
+    <div class="control-panel">
+        <button class="btn" onclick="downloadPDF()">📄 下载/打印 PDF</button>
+        <button class="btn" onclick="exportWord()">📝 导出 Word</button>
+    </div>
+
+    <!-- 简历主体内容 -->
+    <div class="page-container" id="resume-content">
+        
+        <!-- 头部 -->
+        <header>
+            <h1>高增浩 Zenghao Gao</h1>
+            <div class="job-title">资深产品运营总监 | 数字化转型专家 | 连续创业者</div>
+            <div class="contact-info">
+                <span class="contact-item">📍 坐标：福州</span>
+                <span class="contact-item">📱 180-0692-5556</span>
+                <span class="contact-item">📧 gaozenghao-215@163.com</span>
+                <span class="contact-item">📅 工作年限：16年 (2009年起)</span>
+                <span class="contact-item">💻 作品集：Wulihub链接(请填入)</span>
+            </div>
+        </header>
+
+        <!-- 职业总结 -->
+        <section>
+            <h2>个人职业总结 (Executive Summary)</h2>
+            <p><strong>■ 复合型管理者：</strong>拥有16年互联网及本地生活服务行业经验，具备“技术开发(Tech) + 产品规划(Product) + 市场运营(Operation)”的铁三角复合背景。擅长从0到1组建团队（曾统筹15+人产研运营团队），拥有PMP项目管理认证。</p>
+            <p><strong>■ 数字化实战专家：</strong>精通O2O模式及房产/家装/电商领域的数字化改造。曾主导 517新鲜网、邻犀生活 等多个大型平台搭建，擅长通过 SOP标准化 及 CRM系统构建 解决非标业务痛点，实现企业降本增效。</p>
+            <p><strong>■ 技术驱动增长：</strong>保持极强的技术敏锐度，从早期的Web全栈开发转型至当前的 AIGC商业化落地。熟练运用 ComfyUI、LLM知识库 及 Power BI 数据分析，致力于通过自动化工具流提升业务人效。</p>
+        </section>
+
+        <!-- 技能矩阵 -->
+        <section>
+            <h2>核心技能矩阵 (Skills Matrix)</h2>
+            <table class="skills-table">
+                <tr>
+                    <td>行业领域</td>
+                    <td>O2O本地生活、房地产/物业/家装、跨境电商 (POD模式)、企业SaaS</td>
+                </tr>
+                <tr>
+                    <td>产品能力</td>
+                    <td>需求分析 (PRD/BRD)、原型设计 (Axure/墨刀)、交互设计 (UI/UE)、竞品分析</td>
+                </tr>
+                <tr>
+                    <td>运营能力</td>
+                    <td>用户增长 (Growth)、私域流量 (企微/社群)、新媒体矩阵 (抖音/直播)、SOP制定</td>
+                </tr>
+                <tr>
+                    <td>技术栈(新)</td>
+                    <td>AIGC应用 (Midjourney/ComfyUI/Ollama)、自动化 (n8n/UiBot RPA)、Power BI</td>
+                </tr>
+                <tr>
+                    <td>管理能力</td>
+                    <td>PMP (项目管理专业人士)、CMMI3标准、团队建设、KPI/OKR绩效管理</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 工作经历 -->
+        <section>
+            <h2>详细工作经历 (Professional Experience)</h2>
+
+            <!-- 经历 1 -->
+            <div>
+                <h3>
+                    <span class="company-name">跨境电商 AIGC 创新项目 (创业)</span>
+                    <span class="date-range">2025.07 – 至今</span>
+                </h3>
+                <div class="sub-info">职位：合伙人 / 技术运营负责人</div>
+                <ul>
+                    <li><strong>AIGC 工作流搭建：</strong>基于 ComfyUI 搭建自动化生图工作流，训练 Lora 模型统一风格，实现模特/商品图批量生成，替代商拍，大幅降低成本。</li>
+                    <li><strong>AI 知识库部署：</strong>利用 Ollama + CherryStudio 部署本地知识库，辅助文案生成与客服回复；研究 n8n 打通SaaS数据流。</li>
+                    <li><strong>业务全案操盘：</strong>负责P&L测算、制定全流程 SOP手册，成功跑通最小可行性模型（MVP）。</li>
+                </ul>
+            </div>
+
+            <!-- 经历 2 -->
+            <div>
+                <h3>
+                    <span class="company-name">福州有家装修有限公司</span>
+                    <span class="date-range">2025.01 – 2025.08</span>
+                </h3>
+                <div class="sub-info">职位：家装顾问 (市场拓展)</div>
+                <ul>
+                    <li><strong>业绩突破：</strong>入职3个月内个人业绩突破 100万元，打破新人记录。</li>
+                    <li><strong>数字化赋能：</strong>搭建Excel运营数据体系；建立“楼盘风格-设计师”标签化匹配机制，缩短决策周期。</li>
+                </ul>
+            </div>
+
+            <!-- 经历 3 -->
+            <div>
+                <h3>
+                    <span class="company-name">福州邻犀生活服务有限公司</span>
+                    <span class="date-range">2022.02 – 2024.12</span>
+                </h3>
+                <div class="sub-info">职位：运营总监 & 产品经理</div>
+                <ul>
+                    <li><strong>数字化基建：</strong>主导企微 CRM、财务系统及法大大电子签集成；设计“报盘率管理系统”，解决房源盘点痛点。</li>
+                    <li><strong>新媒体增长：</strong>组建短视频团队，建立SOP孵化个人IP。单人日均有效获客 3条+，播放量破万。</li>
+                    <li><strong>SOP体系：</strong>输出《邻犀运营SOP手册》，涵盖社区访客、验房监理及定价分配机制。</li>
+                </ul>
+            </div>
+
+            <!-- 经历 4 -->
+            <div>
+                <h3>
+                    <span class="company-name">福建福家房产中介代理有限公司</span>
+                    <span class="date-range">2019.08 – 2022.02</span>
+                </h3>
+                <div class="sub-info">职位：新媒体运营总监</div>
+                <ul>
+                    <li><strong>爆款操盘：</strong>负责“福家邻里”项目，上线首日8K并发，26小时获客 13,000+人。</li>
+                    <li><strong>数据决策：</strong>搭建 Power BI 自动化分析系统，每周自动生成复盘报告。</li>
+                    <li><strong>模式变革：</strong>构建“新媒体+社区沙龙”模式，部署企业微信解决离职带单问题。</li>
+                </ul>
+            </div>
+
+            <!-- 经历 5 (折叠早期经历) -->
+            <div>
+                <h3>
+                    <span class="company-name">福建心蓝天超市 (517新鲜网) / 耕集良品</span>
+                    <span class="date-range">2014.10 – 2019.03</span>
+                </h3>
+                <div class="sub-info">职位：电商部负责人 / 电商企划经理</div>
+                <ul>
+                    <li><strong>517新鲜网：</strong>从0组建15人团队，导入CMMI3标准，完成APP/ERP/WMS全系统研发。</li>
+                    <li><strong>耕集良品：</strong>策划裂变活动，单次新增会员7000+，获客成本低至2.3元。</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top:10px; font-size:12px; color:#888;">* 2009-2014 早期经历包括：万微信息(产品经理)、网格智能(设计部经理)。详情可面谈。</p>
+
+        </section>
+
+        <!-- 教育与证书 -->
+        <section>
+            <h2>教育背景 & 资格认证 (Education)</h2>
+            <ul style="list-style: none; margin-left: 0;">
+                <li>🎓 <strong>本科：</strong>福州农林大学 | 工商管理 (2013-2016)</li>
+                <li>🎓 <strong>专科：</strong>厦门华厦职业学院 | 计算机应用技术 (2005-2008)</li>
+                <li>📜 <strong>PMP</strong> 项目管理专业人士认证 | 📜 <strong>UiBot RPA</strong> 自动化工程师认证</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <script>
+        // PDF 下载功能 (调用浏览器原生打印)
+        function downloadPDF() {
+            window.print();
+        }
+
+        // Word 导出功能 (生成 HTML 格式的 Word 文档，兼容性最好)
+        function exportWord() {
+            var content = document.getElementById('resume-content').innerHTML;
+            
+            // 构建一个包含基本样式的完整 HTML 字符串，让 Word 能识别布局
+            var html = `
+                <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+                <head>
+                    <meta charset='utf-8'>
+                    <title>高增浩_简历</title>
+                    <style>
+                        body { font-family: 'Microsoft YaHei', sans-serif; font-size: 14px; line-height: 1.5; }
+                        h1 { font-size: 24px; color: #000; text-transform: uppercase; margin-bottom: 5px; }
+                        h2 { font-size: 16px; background-color: #f4f4f4; color: #000; border-left: 4px solid #C5A059; padding: 5px; margin-top: 20px; }
+                        h3 { font-size: 14px; margin-top: 15px; color: #000; font-weight: bold; }
+                        .date-range { float: right; color: #666; font-weight: normal; }
+                        .sub-info { color: #666; italic; margin-bottom: 5px; }
+                        ul { margin-left: 20px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                        td { border-bottom: 1px solid #ddd; padding: 5px; vertical-align: top; }
+                        td:first-child { width: 120px; font-weight: bold; background-color: #fafafa; }
+                    </style>
+                </head>
+                <body>
+                    ${content}
+                </body>
+                </html>
+            `;
+
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+            
+            // 使用 FileSaver.js 保存文件
+            saveAs(blob, '高增浩_简历_产品运营总监.doc');
+        }
+    </script>
+</body>
+</html>

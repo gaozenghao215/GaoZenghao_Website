@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系合作 | 高增浩</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 这里新增了本页面的专属样式 -->
+    <style>
+        /* --- 覆盖/新增本页面的特定样式 --- */
+        
+        /* 页面副标题增强 */
+        .page-intro {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 50px; /* 居中且底部留白 */
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* --- 卡片布局容器 (Grid) --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 三列等宽 */
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        /* --- 单个卡片样式 --- */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.03); /* 微透明背景 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative; /* 为二维码定位做准备 */
+        }
+
+        .contact-card:hover {
+            border-color: #C5A059; /* 悬停变金 */
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px); /* 轻微上浮 */
+        }
+
+        /* 图标样式 */
+        .card-icon {
+            font-size: 30px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* 卡片标题 */
+        .card-title {
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 卡片描述文字 */
+        .card-desc {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 20px;
+            min-height: 40px; /* 保持高度一致 */
+        }
+
+        /* 链接/按钮样式 */
+        .card-link {
+            color: #C5A059;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dotted #C5A059;
+            padding-bottom: 2px;
+            transition: 0.2s;
+        }
+        .card-link:hover {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        /* --- 微信二维码悬停黑科技 --- */
+        .qr-popup {
+            position: absolute;
+            bottom: 90%; /* 在卡片上方显示 */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            width: 140px;
+            height: 140px;
+            background: #fff;
+            padding: 5px;
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+            pointer-events: none; /* 防止遮挡 */
+        }
+        
+        .qr-popup img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* 二维码下方的小三角 */
+        .qr-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        /* 触发显示 */
+        .contact-card.wechat-card:hover .qr-popup {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- 手机端适配 --- */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr; /* 手机变单列 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 保持原有的 Header -->
+    <header>
+        <div class="container">
+            <div class="logo">GAO<span>.ZH</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="services.html">价值与服务</a></li>
+                    <li><a href="manifesto.html">核心竞争力</a></li>
+                    <li><a href="about.html">关于 & 简历</a></li>
+                    <li><a href="contact.html" class="active">联系合作</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 头部文案升级 -->
+        <div class="page-header">
+            <p>GET IN TOUCH</p>
+            <h1>共创数字化未来</h1>
+        </div>
+
+        <!-- 增加了一段引导文案，放在 grid 之前 -->
+        <p class="page-intro">
+            用16年产研运实战经验，为您的业务提供确定性增长。<br>
+            无论是企业转型咨询、AIGC落地还是课程学习，期待与您深度交流。
+        </p>
+
+        <!-- 新的卡片式布局 -->
+        <div class="contact-grid">
+            
+            <!-- 卡片1：邮箱 -->
+            <div class="contact-card">
+                <span class="card-icon">✉️</span>
+                <span class="card-title">发送邮件</span>
+                <div class="card-desc">适合发送详细的项目需求文档。<br>通常在24小时内回复。</div>
+                <a href="mailto:gaozenghao-215@163.com" class="card-link">gaozenghao-215@163.com</a>
+            </div>
+
+            <!-- 卡片2：微信 (带二维码悬停) -->
+            <div class="contact-card wechat-card">
+                <!-- 二维码容器 (请替换 src 图片路径) -->
+                <div class="qr-popup">
+                    <img src="my-wechat.jpg" alt="微信二维码">
+                </div>
+
+                <span class="card-icon">💬</span>
+                <span class="card-title">添加微信</span>
+                <div class="card-desc">最直接的沟通方式。<br>请注明来意（如：招聘/合作）。</div>
+                <a href="javascript:void(0);" class="card-link">ID: GZH_2025 (扫码/点击)</a>
+            </div>
+
+            <!-- 卡片3：电话 -->
+            <div class="contact-card">
+                <span class="card-icon">📞</span>
+                <span class="card-title">拨打电话</span>
+                <div class="card-desc">紧急事务或初步意向沟通。<br>当前坐标：中国·福州</div>
+                <a href="tel:18006925556" class="card-link">180-0692-5556</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 保持原有的 Footer -->
+    <footer>
+        <div class="container">© 2025 Gao Zenghao.</div>
+    </footer>
+</body>
+</html>

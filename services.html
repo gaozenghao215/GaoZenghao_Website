@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>价值与服务 | 高增浩</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">GAO<span>.ZH</span></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="services.html" class="active">价值与服务</a></li>
+                    <li><a href="manifesto.html">核心竞争力</a></li> <!-- 新增这一行 -->
+                    <li><a href="about.html">关于 & 简历</a></li>
+                    <li><a href="contact.html">联系合作</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <p>Solutions</p>
+            <h1>核心价值与服务</h1>
+        </div>
+
+        <!-- Tab 切换按钮 -->
+        <div class="tabs-container">
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('business')">
+                    <span class="icon">🏢</span> 面向企业
+                </button>
+                <button class="tab-btn" onclick="switchTab('executives')">
+                    <span class="icon">💼</span> 面向高管/负责人
+                </button>
+                <button class="tab-btn" onclick="switchTab('students')">
+                    <span class="icon">👨‍💻</span> 面向学员
+                </button>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="services-wrapper">
+            
+            <!-- 1. 面向企业 (默认显示) -->
+            <div id="business" class="tab-content active">
+                <div class="content-header">
+                    <h2>构建自动运转的标准化系统</h2>
+                    <p>拒绝业务“黑盒”。通过 SOP 与数字化工具，将隐性经验资产化，降低对“牛人”的依赖。</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>01. 业务流程标准化 (SOP)</h3>
+                        <p>深入业务一线，利用 AI 快速提取各部门隐性经验，构建从部门到岗位的标准化操作手册，让流程“看得见、管得着”。</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>02. 最小单元精细化管理</h3>
+                        <p>针对销售/外勤团队，将管理颗粒度下沉至“每日行程”。搭建可视化监控系统，实时追踪拜访与在途数据，拒绝业绩靠运气。</p>
+                        <span class="tag">落地案例</span>
+                    </div>
+                    <div class="card">
+                        <h3>03. 数字化工具集成</h3>
+                        <p>打通企业微信、CRM、财务系统数据孤岛，实现业务流、资金流、信息流的“三流合一”。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. 面向高管/负责人 -->
+            <div id="executives" class="tab-content">
+                <div class="content-header">
+                    <h2>从“救火队长”转型为“系统架构师”</h2>
+                    <p>授人以渔。一对一指导管理者如何设计自动化运转机制，建立可复制的团队管理模型。</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>01. 流程架构设计指导</h3>
+                        <p>教你如何拆解业务动作，定义关键节点。作为“外脑”，帮你诊断部门业务流程中看不见的“血栓”和低效环节。</p>
+                    </div>
+                    <div class="card">
+                        <h3>02. AI 管理赋能 (Coaching)</h3>
+                        <p>手把手教高管如何利用 AI 工具快速梳理思路、生成管理文档与决策报表，不再依赖下属的汇报。</p>
+                    </div>
+                    <div class="card">
+                        <h3>03. 变革推行策略</h3>
+                        <p>指导如何制定激励机制与推行策略，让员工从“抗拒流程”变为“依赖流程”，确保标准化落地。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. 面向学员 -->
+            <div id="students" class="tab-content">
+                <div class="content-header">
+                    <h2>AI 时代的超级个体实战</h2>
+                    <p>不教枯燥代码，只教用 AI 工具解决赚钱与效率问题。打造你的“数字分身”。</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>01. AI 自动化编程实战</h3>
+                        <p>教你用 n8n / RPA 打造个人的“数字员工流水线”。自动处理报表、邮件与数据录入，实现职场自动化。</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>02. Temu 跨境电商一体化</h3>
+                        <p>全流程 SOP 交付。含选品财务测算、<b>ComfyUI 自动生图</b>及 AI 客服知识库搭建，跑通低成本创业闭环。</p>
+                        <span class="tag">副业首选</span>
+                    </div>
+                    <div class="card">
+                        <h3>03. 个人 IP 数字名片</h3>
+                        <p>用产品经理思维重塑简历逻辑，0代码搭建像这样的个人网站，全方位展示您的专业价值。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">© 2025 Gao Zenghao. Powered by System Thinking.</div>
+    </footer>
+
+    <!-- Tab 切换脚本 -->
+    <script>
+        function switchTab(tabId) {
+            // 1. 移除所有按钮的 active 类
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // 2. 隐藏所有内容
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // 3. 激活当前点击的按钮 (通过 event.currentTarget)
+            event.currentTarget.classList.add('active');
+            // 4. 显示对应的内容
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
