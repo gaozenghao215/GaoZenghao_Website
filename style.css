@@ -100,7 +100,13 @@ footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255
 @media (max-width: 768px) {
     .hero-split, .about-grid { grid-template-columns: 1fr; }
     header { padding: 0 20px; }
-    nav { display: none; }
+    /* 移动端：隐藏横向导航，显示汉堡按钮；使用 JS 切换 nav.open */
+    .nav-toggle { display: block; background: transparent; border: none; cursor: pointer; width: 36px; height: 28px; position: relative; }
+    .nav-toggle span { display: block; height: 3px; background: var(--text-sub); margin: 5px 0; transition: 0.25s; border-radius:2px; }
+    nav { display: none; position: absolute; top: var(--nav-height); left: 0; width: 100%; background: rgba(5,5,5,0.98); border-bottom: 1px solid rgba(255,255,255,0.03); }
+    nav.open { display: block; }
+    nav ul { flex-direction: column; gap: 12px; padding: 18px 30px; }
+    nav ul li { margin: 0; }
     .page-header h1 { font-size: 36px; }
 }
 /* --- Tab 切换样式 (追加到 style.css 底部) --- */

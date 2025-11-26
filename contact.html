@@ -135,21 +135,8 @@
     </style>
 </head>
 <body>
-    <!-- 保持原有的 Header -->
-    <header>
-        <div class="container">
-            <div class="logo">GAO<span>.ZH</span></div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">首页</a></li>
-                    <li><a href="services.html">价值与服务</a></li>
-                    <li><a href="manifesto.html">核心竞争力</a></li>
-                    <li><a href="about.html">关于 & 简历</a></li>
-                    <li><a href="contact.html" class="active">联系合作</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- 注：header 由 nav.js 动态注入 -->
+    <header id="site-header"></header>
 
     <main class="container">
         <!-- 头部文案升级 -->
@@ -203,5 +190,6 @@
     <footer>
         <div class="container">© 2025 Gao Zenghao.</div>
     </footer>
+    <script src="nav.js"></script>
 </body>
 </html>
